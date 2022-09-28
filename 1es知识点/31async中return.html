@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // async 返回一个promise
+        // function return 返回到 then 回参 或者 await 输出
+        async function fun(){
+            console.log(this);
+            // return 不是 async 函数的返回值。
+            // return 接收：1：then 回参 2 await 
+            return 1
+        }
+        fun().then(data=>{
+            // 接收 async fun 函数 return 返回值
+            console.log(data,'data');
+        })
+
+        // 执行 async函数
+        let res = fun(); // promise
+        console.log(res);
+
+
+        // 总结：
+        // async 函数执行 返回新的promise
+        // asynce中return 将值传入到 async 返回的promise 的then中；或者 await输出
+        
+    </script>
+</body>
+</html>

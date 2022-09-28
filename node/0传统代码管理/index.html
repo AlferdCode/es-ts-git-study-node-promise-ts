@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        传统的代码即使拆分为多个独立文件也是在一个全局作用域下运行的
+        典型：变量污染
+        闭包  弊端内存泄漏 （为什么会泄漏）
+              标记清楚发；0引用
+        
+     -->
+    <script src="a.js"></script>
+    <script src="./b.js"></script>
+    <script>
+        var b = myPlugin.foo();
+        console.log(b);
+        var c = myPlugin.bar();
+        console.log(c);
+
+        setTimeout(()=>{
+            // 防止内存泄漏
+            myPlugin.foo = null;
+            myPlugin.bar = null
+        },10000)
+
+
+        var obj = {}
+        var num = 123;
+        var c = obj;
+        // obj === '1234566kdieiejr2o3o4'
+        // c = '1234566kdieiejr2o3o4'
+        // 1234566kdieiejr2o3o4 有一个空间 放了一个对象
+        // ----> obj  c 地址相同 为同一个对象 
+        // ----> 浅拷贝
+    </script>
+</body>
+</html>

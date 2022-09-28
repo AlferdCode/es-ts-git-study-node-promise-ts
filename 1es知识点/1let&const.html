@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // es5 在同一个的作用域中变量名是可以重复生命的  
+        // es5 在同一个作用域中变量名和函数名字可以重复声明
+        // ====> 变量污染
+
+        // var a = 0;
+        // function a() {
+        // }
+        // {
+        //     var a = 1
+        // }
+        // console.log(a)
+
+
+        // es6
+        // let 声明的便里昂会形成块级作用域
+        //  let 在同一个作用域下， 声明的变量， 禁止重复声明
+
+        let a = 0;
+        // function a() {}  // 报错 Identifier 'a' has already been declared
+        // function foo(b){
+        //     // let b = 0; // : Identifier 'b' has already been declared
+        // }、
+
+        { // a 的块级做作用域 , a 只能在{} 内部被使用
+            let a = 1  
+            console.log(a)
+            {
+                console.log(a,'误区{}不是作用用域')
+            }
+            var b  = 123; // 注意：作用域决定的是变量的访问权限。不是{}就形成了独立私有域
+        }
+        console.log(a)
+        console.log(b)
+
+        // const 声明的是常量，只能初始化赋值一次，不能重新赋值。
+
+        var test = 1; // 作用 1 var 声明 test  2 初始赋值1
+        test = 2;
+        let test1 = 1;// 作用 1 let 声明 test1  2 初始赋值1
+        test1 = 2  // 重新给test1 赋值为 2 
+        const tast = 1; //作用 1 声明常量tast  2 赋值1
+        // tast = 2; //报错 Assignment to constant variabl
+        console.log(tast);
+        // const tast1;  // 报错 Missing initializer in const declaration
+
+        // 注意： 不可以将声明可赋值分开写
+        // const tast2;// 报错 Missing initializer in const declaration
+        // tast2 = 12
+
+        {
+            const a ='const a';
+            console.log(a);
+        }
+        console.log(a);
+
+        /*
+        let const
+        let 声明变量
+        const 常量
+        let const 声明的都会形成块级作用域
+        */
+    </script>
+</body>
+
+</html>

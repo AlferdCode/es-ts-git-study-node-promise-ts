@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // // race  多个异步任务 同时触发
+        // let tast = [];
+        // // 1：创建 9个异步任务
+        // for (let i = 0; i < 9; i++) {
+        //     let p = new Promise((resolve, reject) => {
+        //         setTimeout(() => {
+        //             console.log('异步程序');
+        //             if (i == 5) {
+        //                 // console.log('失败了');
+        //                 reject(i);
+        //             } else {
+        //                 resolve(i); // 输出异步任务成功的结果
+
+
+        //             }
+        //         }, 1000)
+        //     })
+        //     tast.push(p)
+        // }
+        // // Promise.race()  
+        // // 多个promise任务中,只有有一个任务发生【状态改变】；就会执行then(成功)或者catch(失败)。
+        // Promise.race(tast).then(res => {
+        //     console.log('有一个promis成功了', res);
+        // }).catch(err => {
+        //     // 在链式调用.then 中；只要存在一个失败；或者错误，都可以捕获到。
+        //     console.log(err, '出错了出错了', err);
+        // })
+
+        // // all中区别
+        // // 多个promise 所有的都都成功了，执行then， 只要有一个失败状态就执行catch 
+        // // then与catch只能执行其中一个
+        // Promise.all(tast).then(res => {
+        //     console.log('success');
+        // }).catch(err => {
+        //     console.log('err');
+        // })
+
+        // Promise.all Promise.race 的区别是什么
+
+
+        // Promise.any() 与 Promi.all 区别是什么 
+
+        // Promise.any() 与 Promise.race 区别是什么
+
+        let tast1 = [];
+        for (let i = 0; i < 9; i++) {
+            let p = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    // if (i == 5) {
+                    //     resolve(i);
+                    // } else {
+                        reject(i);
+
+
+                    // }
+                }, 1000)
+            })
+            tast1.push(p)
+        }
+
+        // Promise.any()
+        // 多个promise 全部都失败了才能执行catch ，否则执行then
+        Promise.any(tast1).then(res=>{
+            console.log('any success');
+        }).catch(err=>{
+            console.log('any err',err);
+        })
+       
+
+
+
+
+
+    </script>
+</body>
+
+</html>

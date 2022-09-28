@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+   
+
+        // 1:Promise()  实例化promise对象
+        //  参数为 函数：
+        let promise = new Promise(function (resolve, reject) {
+            // 这里写异步程序
+            setTimeout(() => {
+                console.log('dingxupeng')
+                // 异步程序执行结束
+                if (false) {
+                    // 执行 .then() 参数一，表示成功
+                    resolve(1)
+                } else {
+                    // 执行的 .then 的参数二， 失败
+                    reject('err')
+                }
+
+            }, 500)
+        })
+
+        console.log('fujia')
+
+        promise.then(function (data) {
+            console.log('接受到异步与逆行结束吗，成功结果', data)
+        }, function (err) {
+            console.log('接受带异步运行结果；失败了', err)
+        })
+
+
+
+        // 2 模拟发送请求代码
+        let p1 = new Promise(function (resolve, reject) {
+            let xhr = new XMLHttpRequest();
+            xhr.open('/', 'get', true);
+            xhr.send();
+            xhr.onreadystatechange = function (data) {
+                if (data.reaadystate == 4 && data.state == 200) {
+                    // ajax 请求完成 
+                    // 状态 ：成功
+                    resolve(data.data)
+                } else {
+                    // 请求失败了
+                    // 状态： 失败
+                    reject(data)
+                }
+            }
+        })
+
+        p1.then(function (data) {
+            // 执行ajax 请求成功后做什么
+            // 成功后的结果
+        }, function (err) {
+            // ajax 失败后，做什么？
+            // err 是失败结果
+        })
+
+    </script>
+
+
+    <script>
+        // 改变为 promise 风格
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // function $ajax(options) {
+
+        //     var { url, method, data, success } = options;
+        //     var params = '';
+        //     for (var x in data) {
+        //         params += `${x}=${data[x]}&`
+        //     }
+        //     params = params.slice(0, params.length - 1);
+        //     method = method.toUpperCase();
+        //     var xhr = new XMLHttpRequest();
+        //     if (method === 'GET') {
+        //         url = url + '?' + params;
+        //         xhr.open(method, url, true);
+        //         xhr.send();
+        //     }
+        //     if (method === 'POST') {
+        //         xhr.open(method, url, true)
+        //         xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+        //         xhr.send(params)
+        //     }
+        //     xhr.onreadystatechange = function () {
+        //         if (xhr.readyState === 4 && xhr.status == 200) {
+        //             // 表示响应成功
+        //             var data = xhr.responseText;
+        //             data = JSON.stringify(data)
+        //             success(data)
+        //         }
+        //     }
+        // }
+
+
+
+        function $ajax({ url = '/', method = 'GET', data = {} }) {
+            return new Promise(function (resolve, reject) {
+                var params = '';
+                for (var x in data) {
+                    params += `${x}=${data[x]}&`
+                }
+                params = params.slice(0, params.length - 1);
+                method = method.toUpperCase();
+                var xhr = new XMLHttpRequest();
+                if (method === 'GET') {
+                    url = url + '?' + params;
+                    xhr.open(method, url, true);
+                    xhr.send();
+                }
+                if (method === 'POST') {
+                    xhr.open(method, url, true)
+                    xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                    xhr.send(params)
+                }
+
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4 && xhr.status == 200) {
+                        // 表示响应成功
+                        var data = xhr.responseText;
+                        data = JSON.stringify(data);
+                        resolve(data)
+                    }else{
+                        reject(data)
+                    }
+                }
+            })
+        }
+
+        $ajax({
+            url: '/',
+            method: "get",
+            data: {},
+        }).then(function () {
+            // sunccess
+        }, function (err) {
+            // err
+        })
+    </script>
+</body>
+
+</html>

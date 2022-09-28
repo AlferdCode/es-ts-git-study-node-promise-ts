@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let p1 = function () {
+            return new Promise((resolve, reject) => {
+                setTimeout(function () {
+                    console.log('p1');
+                    resolve('p1xxxxx');// resolve 输出异步结束的 成功结果
+                }, 1000)
+            })
+        }
+
+        let p2 = function () {
+            return new Promise((resolve, reject) => {
+                setTimeout(function () {
+                    console.log('p2');
+                    resolve('p2xxxxxxxx');
+                    g.next();
+                }, 2000)
+            })
+        }
+
+
+        // 目的为了获取 promise中异步执行结束 ；输出的结果
+
+        // 解决的是，异步问题 同步化。 先输p2 在输出p1
+        // p2();
+        // p1();
+
+        // 方式一： 当p2异步结束时间不知道的时候 就不行了
+        // p2();
+        // setTimeout(()=>{
+        //     p1()
+        // },1000)
+
+        // 方式二：弊端　then的层层嵌套问题
+        // p2().then(res=>{
+        //     p1()
+        // })
+
+
+
+
+
+
+
+
+
+        // // 方式三：gennerater 函数
+        // function* gen() {
+        //     console.log('gen1');
+        //     yield p2();
+        //     console.log('gen2');
+        //     yield p1();
+        //     console.log('gen3');
+        // }
+        // let g = gen();
+        // // 获取promise异步输出结果
+        // g.next().value.then(res=>{
+        //     console.log(res);
+        // });
+
+        // // g.next();
+        // // // // // 问题 如何接受 异步输出的结果
+
+
+        
+        function* gen1(){
+            // 1 yield 需要 next()执行
+            // 2 阻止下面代码执行
+            // 3 后面的内容为返回值 通过 value获取
+            // ---> 一个函数输出多个返回值
+            yield 1;  
+            console.log('gen2');
+            yield 2;
+            console.log('gen3');
+            return 123
+            // yield 5  // return 下所有 yueld 不能执行了。
+        }
+        let g1 =gen1();
+        console.log(g1);
+        console.log(g1.next().value); // 获取第一个 yield 的返回值
+        console.log(g1.next().value); // 获取第二 yield 的返回值
+        console.log(g1.next().value); // 获取return 返回值
+
+    </script>
+</body>
+
+</html>

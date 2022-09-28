@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>标体001</h1>
+    <h1>标体002</h1>
+    <h1>标体003</h1>
+    <script>
+        // const  引入第三方模块 或者禁止被修改的变量
+
+        // let 会形成块级作用域
+        // let 随时都可以形成私有的作用域；不需要用立即执行函数创建私有作用域了
+
+        const h1s = document.querySelectorAll('h1');
+        // for (var i = 0; i < h1s.length; i++) {
+        //     (function (i) {
+        //         h1s[i].onclick = function () {
+        //             h1s[i].style.color = 'red'
+        //         }
+        //     })(i)
+
+        // }
+
+        // for (var i = 0; i < h1s.length; i++) {
+        //     let j = i
+        //     h1s[j].onclick = function () {
+        //         h1s[j].style.color = 'red'
+        //     }
+
+        // }
+
+
+        for (let i = 0; i < h1s.length; i++) {
+            h1s[i].onclick = function () {
+                h1s[i].style.color = 'red'
+            }
+        }
+    </script>
+</body>
+
+</html>

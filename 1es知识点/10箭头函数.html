@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let fun = function () {
+            console.log('fun');
+            console.log(this)
+        }
+        // 用箭头函数代替fuction 匿名函数
+        let fun1 = (...argn) => {
+            console.log('fun1');
+            // 1 没有arguments; 有rest 参数
+            // console.log(arguments);
+            console.log(argn)
+            // 2: 没有this, 这里使用的是上一层作用与中的this
+            console.log(this)
+        }
+        // fun();
+        // fun1(1,1,1,);
+
+        var obj = {
+            fun: fun,
+            fun1: fun1,
+            bar: bar
+        }
+        obj.fun();
+        obj.fun1();
+
+        function bar() {
+            console.log(this);
+            let foo = () => {
+                console.log(this); // 使用 上一层作用域 bar 中的this
+            }
+            foo()
+        }
+
+        obj.bar()
+        bar()
+
+        // 简写  res 形参  返回：res+123
+        // 1 一个形参 
+        // 2 函数方法体直接用返回值
+
+        let fun2 = res => res + 123;
+        console.log(fun2(3));
+
+        let fun3 = (a,b,c)=> 123;
+        console.log(fun3());
+
+
+        // 合并对象方法
+        // let assigin = (obj1,obj2) =>{
+        //     return Object.assign(obj1,obj2)
+        // }
+
+        // Object.assign() 合并对象 返回合并后的独享
+        let assigin = (obj1,obj2) => Object.assign(obj1,obj2); // 省略return 返回值简写
+
+        var person = {
+            name:'123'
+        }
+        var student = {
+            age:12
+        }
+        console.log(assigin(person,student));
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 第一点：在同一个作用域{}，不能重复声明声明
+        // let a = 123; // 1 声明全局变量a 并赋初始值123
+        // if(true){
+        //     console.log('if执行了');
+        //     let a = 456; // 1: 声明一个局部变量a 并赋值456
+        //     console.log('这里let a 只能在 if内部使用',a);
+        //     // const a = 123 // 坑
+        // }
+
+        // // var a   // 坑
+        // console.log(a);
+
+        // // 第二点：let const 声明的变量常量，没有变量提升，会形成暂时性死区
+        // // 1 在当前{}中 let 声明的变量之前不使用该变量  
+        // // 2 typeof 不能百分百安全，也会报错
+
+
+        // // console.log(a); // 坑  Cannot access 'a' before initialization
+        // let a = 123;
+
+        // {
+        //     // 暂时性死区
+        //     // console.log(a);
+        //     console.log(typeof wuliujue)
+        //     // typeof运算符是百分之百安全的，永远不会报错 在暂时性死区中不成立
+        //     // console.log(typeof a)  
+        //     let a = 456
+        // }
+
+        // var x = x;
+
+        // // Cannot access 'y' before initialization
+        // let y = y; // let y 没有变量提升
+
+
+        // 第三点函数体中 let不能声明形参
+        // function foo(x,y){
+        //     let x = 234;
+        // }
+
+        // 第四 在同一个作用域中let 不能声明函数名
+        // let foo = 123
+        // function foo(){}
+
+        // 第五点 内层{} 声明的变量不影响外层{} 声明的变量
+        // let a = 123;
+        // {
+        //     let a = 456;
+        //     {
+        //         let a= 789
+        //         console.log(a,'33333333333333')
+        //     }
+        //     console.log(a,'2222222222')
+        // }
+        // console.log(a,'1111111')
+
+        // for (var i = 0; i < 3; i++) {
+        //     console.log(i); // 012
+        // }
+
+        // for (var i = 0; i < 3; i++) {
+        //     setTimeout(function () {
+        //         console.log(i);  //  333
+        //     }, 16.7)
+        // }
+
+        // for (var i = 0; i < 3; i++) {
+        //     (function (i) {
+        //         setTimeout(function () {
+        //             console.log(i);  //  012
+        //         }, 16.7)
+        //     })(i)
+        // }
+
+        // let 形成块级做用域方式；代替闭包解决变量污染问题
+        for (let i = 0; i < 3; i++) {
+            setTimeout(function () {
+                console.log(i);  //  012
+            }, 16.7)
+        }
+
+        // console.log(i);  // i is not defined
+
+        // 1: 怎么解决的 
+        // 2: 难道用了let 后 for 执行一次 执行 console.log  打断点
+
+        //     模拟for 执行的过程
+        //     for 类似下面的执行 
+        // {
+        //     let i = 0;
+        //     setTimeout(function () {
+        //         console.log(i);
+        //     }, 16.7);
+        // }
+        // {
+        //     let i = 1
+        //     setTimeout(function () {
+        //         console.log(i);
+        //     }, 16.7);
+        // }
+        // {
+        //     let i = 2
+        //     setTimeout(function () {
+        //         console.log(i);
+        //     }, 16.7);
+        // }
+    </script>
+</body>
+
+</html>7

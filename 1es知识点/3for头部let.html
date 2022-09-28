@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+
+        // console.log(i);  // i is not defined
+
+        // 1: 怎么解决的 
+        // 2: 难道用了let 后 for 执行一次 执行 console.log  打断点
+
+        //     模拟for 执行的过程
+        //     for 类似下面的执行 
+        // {
+        //     let i = 0;
+        //     setTimeout(function () {
+        //         console.log(i);
+        //     }, 16.7);
+        // }
+        // {
+        //     let i = 1
+        //     setTimeout(function () {
+        //         console.log(i);
+        //     }, 16.7);
+        // }
+        // {
+        //     let i = 2
+        //     setTimeout(function () {
+        //         console.log(i);
+        //     }, 16.7);
+        // }
+
+        for (let i = 0; i < 3; i++) {
+            setTimeout(function () {
+                console.log(i);  //  012
+            }, 16.7)
+        }
+        // 头部 let i  声明的不是一个 i 而是循环体执行多少次 let i 就有多少个
+
+        // 程序迭代过程 类似下面的结构
+        // 模拟底碟跌倒 过程
+        for (var i = 0; i < 3; i++) {
+            let j = i; 
+            setTimeout(function () {
+                console.log(j,'===========');  //  012
+            }, 16.7)
+        }
+        
+    </script>
+</body>
+
+</html>

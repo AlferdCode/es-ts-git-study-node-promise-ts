@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Set 方式去重
+
+        let arr = [1, 2, 2, 2, 2, 2, 2, 3, 3, 4, 4, 4, 54]
+
+        let set = new Set(arr);
+        set.add('往set中新增元素')
+        // set 中只能加入一个NaN
+        set.add(NaN);
+        set.add(NaN);
+
+        // set.delete() 删除 set中元素
+        set.delete(54)
+
+        // set.has() 判断set中是否窜在某个元素
+        // 判断set 中是否有3
+        set.has(3) ? console.log('有3') : console.log('没有3');
+
+        console.log(set.size); // 获取set中有多少元素
+
+        let arr1 = [...set];
+        console.log(arr1);
+
+        // 清空set
+        set.clear();
+        console.log(set);
+
+
+
+        // 对象的写法
+        // const properties = {
+        //     'width': 1,
+        //     'height': 1
+        // };
+        // let someName = 'width'
+        // if (properties[someName]) {
+        //     // do something
+        // }
+
+        // Set的写法
+        const properties = new Set();
+
+        properties.add('width');
+        properties.add('height');
+
+        if (properties.has(someName)) {
+            // do something
+        }
+    </script>
+</body>
+
+</html>

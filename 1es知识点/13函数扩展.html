@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //    function foo(y){
+        //        y = y || 'aa'
+
+        //        console.log(y);
+        //    }
+        //    foo('bbb')
+
+        // : Illegal 'use strict' directive in function with non-simple parameter list
+        // 默认值  ...  结构赋值不能用严格模式
+        function foo(y = 'aa', x = {}) {
+            // 'use strict';
+            console.log(y, x);
+            console.log(this);
+        }
+        foo('ccc', { a: "aa" })
+
+        new foo();
+        foo.bind()('luotao', { a: 'hahah' })
+
+
+        // name 返回函数名字
+        console.log(foo.name);
+
+        // 因为箭头函数中没有this bind不可能该百年this 执行 
+        // this === window
+        let res = (() => this.x).bind({ x: 'inner' })()
+
+        let res1 = (function(){return this.x}).bind({x:'inner'})()
+        console.log(res,res1);
+    </script>
+</body>
+
+</html>

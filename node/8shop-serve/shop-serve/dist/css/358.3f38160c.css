@@ -1,0 +1,105 @@
+.leftNav {
+    position: fixed;
+    left: 10px;
+    top: 300px;
+    width: 130px;
+    border: 1px solid #9c689c;
+    text-align: center;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #fff;
+    padding: 15px 0
+}
+
+.leftNav .nav_item {
+    margin: 0;
+    height: 2.2em;
+    line-height: 2.2em;
+    font-size: 16px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none
+}
+
+.item-bg,
+.leftNav .nav_item:hover {
+    font-weight: bolder;
+    color: purple;
+    filter: drop-shadow(purple 0 0 10px)
+}
+
+.shoplist[data-v-46faf25a] {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap
+}
+
+.typeone[data-v-36f8424a] {
+    padding: 20px 0 10px;
+    display: flex;
+    justify-content: space-between
+}
+
+.typeone a[data-v-36f8424a] {
+    cursor: pointer;
+    width: 100%;
+    margin: 0 40px;
+    height: 30px;
+    line-height: 30px;
+    display: inline-block
+}
+
+.router-active[data-v-36f8424a],
+.typeone a[data-v-36f8424a]:hover {
+    background-color: purple;
+    color: #fff;
+    border-radius: 20px
+}
+
+.sorting[data-v-ef70849c] {
+    width: 1200px;
+    margin: 20px auto
+}
+
+.shop-content[data-v-ef70849c] {
+    width: 100%;
+    margin: 20px 0
+}
+
+.item-bg[data-v-ef70849c] {
+    font-weight: bolder;
+    color: purple;
+    filter: drop-shadow(purple 0 0 10px)
+}
+
+.leftNav[data-v-ef70849c] {
+    position: fixed;
+    left: 10px;
+    top: 300px;
+    width: 130px;
+    border: 1px solid #9c689c;
+    text-align: center;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #fff;
+    padding: 15px 0
+}
+
+.leftNav .nav_item[data-v-ef70849c] {
+    margin: 0;
+    height: 2.2em;
+    line-height: 2.2em;
+    font-size: 16px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none
+}
+
+.leftNav .nav_item[data-v-ef70849c]:hover {
+    font-weight: bolder;
+    color: purple;
+    filter: drop-shadow(purple 0 0 10px)
+}

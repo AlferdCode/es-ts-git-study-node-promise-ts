@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // function Point(x, y) {
+        //     this.x = x;
+        //     this.y = y;
+        // }
+
+        // Point.prototype.toString = function () {
+        //     return '(' + this.x + ', ' + this.y + ')';
+        // };
+
+        // var p = new Point(1, 2);
+        // console.log(p);
+        // console.log(p.toString()); 
+
+
+        // 改为class 类
+
+        // 父类
+        class Point {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+            }
+            toString() {
+                return '(' + this.x + ', ' + this.y + ')';
+            }
+            // Point 类访问 不能由实例对象访问
+            static born() {
+                console.log("小呆萌出生了")
+            }
+            // Point类的静态属性
+            static  age= 123;
+        }
+
+        var p = new Point(1, 2);
+        console.log(p);
+        console.log(p.toString());
+        Point.born();
+        console.log(Point.age);
+        // constructor 
+
+        // class 中this
+
+        // extend 继承
+        class Child extends Point {
+            constructor(x,y){
+                super(x,y)
+            }
+        }
+
+        // super
+        var c =  new Child(2,3)
+    </script>
+</body>
+
+</html>

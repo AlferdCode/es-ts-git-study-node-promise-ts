@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // wlj 是变量赋值 ；'aaa'
+        // let {foo:wlj} = {foo:"aaa"};
+        // console.log(wlj);
+        // var obj ={
+        //     name:'aaa',
+        //     params:{
+        //         age:12
+        //     },
+        //     jxz:'及学制'
+        // }
+        // // 设置默认值
+        // let {name,params:{age},jxz='jixuezhi'} = obj;
+        // console.log(name,age,jxz);
+
+
+        // 1：换值；
+        // var x = 1
+        // var y = 2
+        // var z 
+        // z = x 
+        // x = y 
+        // y = z
+
+        let a = 1;
+        let b = 2;
+        [a,b] = [b,a];
+        console.log(a,b);
+
+        // 2 函数返回对象或数组 取值方式
+        function foo(){
+            return{
+                name:"tast",
+                num:1
+            }
+        }
+
+        let {name,num } = foo();
+        console.log(name,num);
+
+
+        // 3 函数参数的定义
+        //  函数有几个形参    2 个
+        // {} ={}   给第一个形参数组默认值，避免undefined 报错
+ 
+        function ajax({url,method='get',params}={},blc){
+             
+            console.log(url,method,params);
+            console.log(blc);
+        }
+        ajax()  // Cannot destructure property 'url' of 'undefined' as it is undefined.
+        // ajax({
+        //     url:'xxxx',
+        //     params:'hahah',
+        //     method:undefined, // 赋值undefined相当于没传之
+        // },'包两餐')
+        
+        // 4 提取json 数据
+
+        let data = {
+            status:200,
+            data:[867, 5309],
+            list:[
+                {
+                    produce:"aaa",
+                    dec:'Niahoasjfdios'
+                },
+                {
+                    produce:"aaa",
+                    dec:'Niahoasjfdios'
+                },
+            ]
+        }
+
+        let {status,data:[c,d],list} = data;
+        console.log(status,c,d,list);
+    </script>
+</body>
+</html>

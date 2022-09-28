@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var obj = {
+            url:'xxx',
+            params:{
+                name:"xieke",
+                age:12
+            },
+            tast:"测试"
+        }
+
+        // var url = obj.url;
+        // var params = obj.params
+        // var tast = obj.tast;
+
+        // 声明对各变量；并赋值obj 中属性的value值
+        // 要求 变量名必须与obj 属性名一致
+        let {url,tast,params} = obj;
+        console.log(url,tast,params)
+        let {name,age} = params;
+        console.log(name,age)
+
+
+        let arr = [1,2,3];
+        let [a,b,c] = arr;
+
+
+        console.log(a,b,c)
+        // 结构数组：
+        // 变量声明没有要求，结构必须与数组一致
+        let [d,e,[f,g],{cname}] = [1,2,[3,4],{cname:"123"}];
+        console.log(d,e,f,g,cname);
+    
+
+        var arr1 = [1,2,3,4,5,56,66,2];
+        //  ...arr  ===> arr赋值为数组
+        //   ...arr 在尾部写一个。后面不能在声明变量了
+        // let [aa,...test,...xieke] = arr1;  // 报错
+        // let [aa,...test,cc] = arr1   // 报错
+
+        let [aa,...test] = arr1;
+        console.log(aa,test,xieke);  // test 赋值 数组、
+
+
+
+        
+
+
+    </script>
+</body>
+</html>

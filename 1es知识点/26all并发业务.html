@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let tast = [];
+        // 1：创建 9个异步任务
+        for (let i = 0; i < 9; i++) {
+            let p = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    console.log('异步程序', i);
+                    resolve(i); // 输出异步任务成功的结果
+                }, 200)
+            })
+            tast.push(p)
+        }
+        console.log(tast);
+        // 2：等9个异步任务都成功之后；弹框上传成功
+
+        // Promise.all(arr)
+        // 多个promise 所有的都都成功了，执行then， 只要有一个失败状态就执行catch 
+        // then与catch只能执行其中一个
+        Promise.all(tast).then(res => {
+            console.log('9个异步任务都执行成功了，才触发这里的代码');
+            // alert('上传成功')
+            // res 是数组；数组元素没 多个异步任务执行结束的返回结果、
+            console.log(res);
+        })
+
+            // 适合案例：并发业务；多张图片上传  、 同时发送多个ajax请求
+
+            ;
+    </script>
+</body>
+
+</html>

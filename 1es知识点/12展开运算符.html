@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //  ...rest rest 是数组
+
+        let obj = {
+            a:'a',
+            b:'b'
+        }
+
+        // ...obj 展开对象；获取对象下每一个属性
+        // 展开对象 对象接收，展开数组；数组接收
+        // let copyObj = [...obj]  // obj is not iterable 
+        let copyObj = {...obj}
+        console.log(copyObj);
+        let arr = [1,2,3]
+        let coptARR = [...arr]
+
+        console.log(coptARR);
+
+
+
+        console.log(isNaN('dddd')); // 判断的是数据转化为number类型后是否为NaN
+        console.log(Number.isNaN(true)); // 数据不转化，直接判断是否为Number类型 并且值为 NaN
+        // isNaN 与 Number.isNaN() 区别
+
+    </script>
+</body>
+</html>

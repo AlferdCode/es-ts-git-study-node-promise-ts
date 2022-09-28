@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 产生promise方式
+        let p= Promise.resolve('1');
+     
+        console.log(p);
+        let p1 = Promise.all([])
+        console.log(p1);
+        let p2 = Promise.race([])
+        console.log(p2);
+        let p3 = new Promise((resolve)=>{resolve('resolve 实参')})
+        console.log(p3);
+        let p4 = p3.then(()=>'then return')
+        console.log(p4);
+
+
+        // 所有promise 都可以触发 then
+        // 问题：then 的 回参接受的值，是谁传递呢？
+
+        // 1 Promise.resolve(data) 中 then的回参是 resolve 的实参data
+        p.then(res=>{
+            console.log(res,'p');
+        })
+        // 2 all  是 所有成功promise 的 resolve()实参
+        p1.then(res=>{
+            console.log(res,'all');
+        })
+
+        // 3：race 是 第一个变为成功状态的 promise 的 resolve()实参
+
+        // 4: resolve() 的实参
+        p3.then(res=>{
+            console.log(res);
+        })
+
+        // 5: then 中的 return 返回值
+        p4.then(res=>{
+            console.log(res);
+        })
+
+        // 套路总结
+        // 第一：看then触发的是哪一个Promise
+        // 第二：promise 是怎么产生的？
+        // 结论： then 的回参 是如何传递的了
+    </script>
+</body>
+</html>

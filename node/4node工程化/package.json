@@ -1,0 +1,18 @@
+{
+  "name": "aa",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "description": "- `npm init`  创建package.json文件,作用：初始化npm包",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "axios": "^0.27.2",
+    "express": "^4.18.1",
+    "jquery": "^3.6.0",
+    "yq-animate": "^0.1.0"
+  }
+}

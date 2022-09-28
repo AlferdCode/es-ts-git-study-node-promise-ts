@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1: 拦截处理
+
+        // 1: 创建了代理对象 proxy
+        //  Proxy() 实力化代理对象
+        //  参一：被代理对象
+        let proxy = new Proxy({},{
+            get:function(target,proxyKey,recive){
+                console.log('触发get');
+                // target 被代理对象 
+                // proxyKey 劫持的属性
+                // recive   代理对象proxy 
+                return target[proxyKey]
+            },
+            set:function(target,proxyKey,value,recive){
+                console.log('触发set');
+                console.log(target);   // 被代理对象
+                console.log(proxyKey); // 修改的属性
+                console.log(value);    // 新值
+                console.log(recive);   // 代理对象=
+
+                target[proxyKey] = value;  // 完成了 被代理对象的修改
+            }
+        })
+
+        console.log(proxy);
+
+        proxy.aa = 'addda'
+        console.log(proxy.aa);
+
+
+        let obj = {
+            name:'aaa',
+            age:123
+        }
+
+        // 用代理方式实现对属性劫持处理 name  age
+
+        // age 获取  '_'
+        
+        let obj1 = new Proxy(obj,{
+            get:function(target,proxyKey,recive){
+                console.log('触发get');
+                if(proxyKey==='age'){
+                    return '+'+target[proxyKey]
+                }
+                // target 被代理对象 
+                // proxyKey 劫持的属性
+                // recive   代理对象proxy 
+                return target[proxyKey]
+            },
+            set:function(target,proxyKey,value,recive){
+                console.log('触发set');
+                console.log(target);   // 被代理对象
+                console.log(proxyKey); // 修改的属性
+                console.log(value);    // 新值
+                console.log(recive);   // 代理对象=
+
+                target[proxyKey] = value;  // 完成了 被代理对象的修改
+            }
+        })
+        obj1.name;
+        console.log(obj1.age);
+
+        
+
+    </script>
+</body>
+</html>

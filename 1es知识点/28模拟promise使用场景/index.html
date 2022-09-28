@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script src="./data.js"></script>
+    <script src="./api.js"></script>
+    <script src="./store.js"></script>
+    <script>
+        function getDataView(){
+            console.log('页面已经开始发送请求了，下面是处理响应结果');
+
+            // 难点 拆分文件时候
+            // wlj 接收的实参来自于哪里
+            getDataStore().then(wlj=>{
+                // 怎么传递过来的呢
+                console.log(wlj,'html')
+            })
+        }
+        getDataView()
+
+
+
+    //    function p(){
+    //        return new Promise((resolve,reject)=>{
+    //            setTimeout(()=>{
+    //                resolve('111')
+    //            },1000)
+    //        })
+    //    }
+    //    p().then(res=>{
+    //        return res
+    //    }).then(res=>{
+    //        console.log(res);
+    //    }}
+
+    </script>
+</body>
+</html>
+<!-- 
+    api 发请求，不处理结果。将结果传递出去
+    store 接受响应结果，并将结果传递出去
+    index 接受store 输出结果（响应结果），并处理结果（与视图相互结合）
+ -->

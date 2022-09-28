@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        let obj = {
+            name:"xiek",
+            age:12
+        }
+
+        // 问题：没办法监听 获取或者修改 属性
+        // obj.name;
+        // obj.name = 'hexiantoa';
+
+        // 解决的问题：利用_name做中间存储；obj.name赋值，避免get方法死循环
+        let _name = obj.name; 
+        /**
+         *  Object.defineProperty(obj,key,{get,set}) 对象属性的数据劫持处理 vue.2X 源码核心
+         *  参一 对象 
+         *  参二 监听属性
+         *  参三是 get set 方法
+         *  注意 需要中间存储数据 
+         */
+        Object.defineProperty(obj,'name',{
+            get(){
+                console.log('刘梦，有人获取name 属性的值了');
+                // 做 获取name 属性的监听处理。
+                return _name
+                // return obj.name get 死循环
+            },
+            set(val,a){
+                console.log(val);
+                console.log('更改name属性触发')
+
+                // 修改属性
+                _name = val;
+                // obj.name = val // bug 死循环 局限性 es proxy 解决了
+            }
+        })
+        // obj.name
+        console.log(obj.name);
+        obj.name = 'hexiantttao'
+        console.log(obj)
+    </script>
+</body>
+</html>

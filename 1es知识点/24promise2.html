@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 程序执行循序，哪里同步？哪里异步
+        
+        // 注意：promise回调函数同执行
+        console.log('a');
+        console.log('b');
+        console.log('c');
+        // new promise 的 回调函数，是同步执行的
+        // .then 的回调函数是异步执行。
+        let p1 = new Promise(function (resolve, reject) {
+            console.log('随着new Promise 这里的代码同步执行');
+            console.log("这里一般写异步代码，例如 ajax ...");
+            console.log(resolve);
+            // resolve 是底层封装的独立函数。表示 当 状态 有未完成变为成功时，执行
+            // resolve 函数的执行是异步的
+            //**** 误区：认为resolve形参接收是 then 的参一函数：错误的
+          
+            resolve(12);
+
+        })
+        p1.then(function (data) {
+            console.log('这里的代码执行慢，这里才是promise的异步，',data)
+        })
+
+
+        console.log("fujia");
+
+        </script>
+
+    <script>
+
+
+// 模拟得到3个结论
+// 1 resolve 是独立函数
+// 2 为社么 resolve() 执行触发 then 参一
+// 3 then 参一函数函数 方法体中代码执行为什么是慢的（异步的）
+
+    //   function p(cb){
+
+    //       function resolve(num){
+    //           //12
+
+    //           setTimeout(function(){
+    //               // 获取 then 参一 执行
+    //               ten(num)
+    //           },16.7)
+    //       }
+    //       cb(resolve)
+
+    //   }
+  
+
+    //   // 模拟then 的会餐
+    //   function ten(data){
+    //       console.log(data,'===============');
+    //   }
+     
+
+    //   p(function(resolve){
+    //     resolve(12)
+    //   })
+
+    </script>
+</body>
+
+</html>

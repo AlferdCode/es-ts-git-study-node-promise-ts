@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let obj = {
+            name:"aaa",
+            age:'123',
+            list:[1,1,1,2],
+            data:{
+                aa:"123"
+            }
+        }
+        // 1: 传统对象   key:value   key是 string
+        // 2  map  value=>valeu  key=>value  值-值
+
+
+        /**
+         *   key=>value  数据结构如下
+         [
+             [key,value],
+             [key1,value]
+         ] 
+
+         值-值 数据结构 
+         [key,value] 键值对；
+         1：是数组键值对，
+         2：数组长度只能为2。
+         换句话；只是长度为2的数组；都可以作为map对象的键值
+
+         */ 
+
+        Object.assign({},obj);
+        Object.keys(obj);
+        Object.entries(obj); // 获取所有的键值
+        // Object.defineProperty() // 数据劫持
+        let res =  obj.hasOwnProperty('name'); // 判断对下是否存在某一个属性
+        console.log(res);
+
+
+        let map = new Map();
+        map.set('msg','存入的键值')  //   ['msg','存入键值']  是值-值数据结构的键值
+        console.log(map);
+
+        
+        // 第一种：数据结构重组 for
+
+        let arr_obj = []
+
+        for(let key in obj){
+            let value = obj[key]
+            arr_obj.push([key,value])
+        }
+        console.log(arr_obj);
+        let map1 = new Map(arr_obj);
+        console.log(map1);
+
+        // 第二种方式 
+
+        let arr_obj1 = Object.entries(obj);
+        console.log(arr_obj1);
+        let map2 = new Map(arr_obj1)
+
+
+        // 第三种 模拟 entries()
+
+        function _entries(obj){
+            let res = []
+            for(let key in obj){
+                res.push([key,obj[key]])
+            }
+            return res
+        }
+
+        Object.prototype._entries = _entries
+
+        let arr_obj2 = Object._entries(obj);
+        console.log(arr_obj2);
+
+        // 第四种；获取键值 利用set 新增
+        let map3 = new Map();
+         Object.keys(obj).forEach((item)=>{
+             map3.set(item,obj[item])
+         })
+         console.log(map3);
+
+         // 完成将 map 将为普通对象 (map2,map3) 
+
+         // 方式1
+         let obj3 = {};
+         [...map3].forEach(([key,value])=>{
+             obj3[key] = value;
+         })
+         console.log(obj3);
+
+
+         // 方式二  for..of 方式
+         let obj4 = {};
+         for(let key of map3.keys()){
+             obj4[key] = map3.get(key)
+         }
+
+
+
+         // 总结：
+         // set 就是 类数组；set 可以去重
+         // map 二维数组，里面的数组长度为2 变为对象后 长度为2的数组 作为 对象键值对
+         // 掌握
+         // 1:利用set 去重 set下api  add() delete() has()
+         // 2:如果将对象变为 map 数据
+         // 3:如何将map变为对象结构
+    </script>
+</body>
+</html>

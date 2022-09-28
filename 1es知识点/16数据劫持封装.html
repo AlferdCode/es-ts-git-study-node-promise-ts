@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //  收集用户修改的内容。
+        let warcher = []
+        let obj = {
+            name: "xieke",
+            age: 12,
+            test: "dddd"
+        }
+
+        //  监听一个属性
+        // let _name = obj.name;
+        // Object.defineProperty(obj, 'name', {
+        //     get() {
+
+        //         return _name
+        //     },
+        //     set(val) {
+
+        //         _name = val
+        //     }
+        // })
+
+        // 监听多个属性
+        Object.keys(obj).forEach(key=>{
+            defineReactive(obj, key, cb)
+        })
+
+        // 作用：对某个对象下某个属性进行数据劫持处理。
+        // 1: 对哪一个对象进行劫持处理
+        // 2: 该对象下那个属性进行劫持处理
+        // 3: 数据修改了以后做什么事？
+        //   done 数据修改后 回调函数
+        function defineReactive(obj, key, done) {
+            let oldVal = obj[key];
+            Object.defineProperty(obj, key, {
+                get() {
+                    console.log('获取了' + key);
+                    return oldVal
+                },
+                set(newVal) {
+                    console.log('修改了' + key);
+                    oldVal = newVal;
+                    done(newVal, oldVal)
+                }
+            })
+        }
+
+        function cb(val) {
+            console.log('数据发生变化了；视图改变吧 数据变为' + val);
+        }
+
+
+        obj.name = 'heXIANttiao'
+        obj.age = 'jdjsfjdfkljselk'
+        obj.test = 'dfasfasdfasdsaed'
+    </script>
+</body>
+
+</html>

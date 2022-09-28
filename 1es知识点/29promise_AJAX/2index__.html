@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 1index.html 拆分为对各函数 -->
+    <script src="./request.js"></script>
+    <script>
+        function getDate(query){
+            return $ajax({ url: 'http://localhost:3000/', data: query }).then(api => {
+                console.log(api, 'api');
+                return api
+            })
+        }
+        function getDataStore(query){
+            return getData(query).then(store=>{
+                console.log(store,'store');
+                return store
+            })
+        }
+        function getDataView(query) {
+            getDataStore(query).then(view=>{
+                console.log(view,'html');
+            })
+        }
+        getDataView({aa:11})
+
+
+
+
+    </script>
+</body>
+
+</html>

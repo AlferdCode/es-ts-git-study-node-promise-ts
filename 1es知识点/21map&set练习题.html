@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1 利用set 去重
+
+        // 2 map
+
+        let map = new Map([
+            ['age',"123"],
+            ['name','aaa']
+        ])
+
+        // 1 将 map 变为数组 arr 
+        // let arr = [...map];
+        let arr = Array.from(map);
+        console.log(arr);
+        // 2: 将arr 变为set 数据 set
+        let set = new Set(arr);
+        console.log(set);
+        
+        let obj = {
+            name:'aaa',
+            age:5,
+            gender:'amlse'
+        }
+
+        // 3: 将obj 转为map 集合
+        // 方式一
+        // let map1 = new Map()
+        // for(let key in obj){
+        //     map1.set(key,obj[key])
+        // }
+        // 方式二
+        // let res = Object.entries(obj); // 获取对象中所有的键值对，[['name','aaa'],['age',5]]
+        // console.log(res);
+        // let map1 = new Map(res)
+
+        // 方式三 (是方式二的实现过程)
+        let map1 = new Map()
+        let res = Object.entries(obj);
+        res.forEach(([key,value] )=> {
+            map1.set(key,value)
+        });
+
+        // 4: 利用set 方式实现数组合并后在曲中
+        let a = [1,2,2,2,3,3,3,3,3,3]
+        let b = ['s','s','ss','sss']
+
+        let concat = [...a,...b];
+        let result = [...new Set(concat)];
+        console.log(result);
+    </script>
+</body>
+</html>
+
+<script>
+
+    function set(success,fail){
+        console.log('我是执行慢的带啊吗');
+        if(true){
+            success('异步执行完毕;将异步结果传递出去')
+        }else{
+            fail("异步执行失败;这里失败结果")
+        }
+    }
+
+    setTimeout(set,1000,function(res){
+        console.log(res);
+        console.log('成功后做什么');
+    },function(err){
+        console.log(err);
+        console.log('失败后做什么');
+    })
+
+</script>

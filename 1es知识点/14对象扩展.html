@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let name = 'hahah';
+        let key = 'cname'
+        let login = {
+            namescope:"login"
+        }
+        let fun = 'func'
+        // key: cname value :hahah
+        let obj = {
+            // cname:'hahah'
+            // 用变量表示对象下key
+            [key]:name,
+            [login.namescope]:'hahahahahahh',
+            [fun](){
+                console.log('我是定义的函数');
+                return 1
+            }
+        }
+        obj.func()
+        console.log(obj);
+
+        //  将obj 合并login
+        // Object.assigin() 将参二后面的所有参数合并到第一个参数中；
+        // 所有的参数为对象
+        // 返回合并后对象，浅拷贝
+        // 实现深拷贝 第一个参数传入空独享
+        let login1 = Object.assign(login,obj,{aaaa:'cccc'});
+        console.log(login);
+        login1.newKey = 'xin曾敏的';
+        console.log(login,login1); 
+
+        // 深拷贝。需求合并对象 
+        let login2 = Object.assign({},login,obj,{aaaa:'cccc'});
+
+        console.log(login2);
+
+        // 需求：获取login2中所有的属性
+
+
+        /**
+         * Object.keys(obj) 获取obj对象中所有的属性，并返回数组
+         */ 
+
+        let attrArr = Object.keys(login2);
+        console.log(attrArr);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        http://  文件加载:需要通过请求服务器,服务器返回html浏览器渲染
+        file://  加载本地资源,不需要网络请求
+     -->
+     <!-- 
+        掌握什么是代理服务器后,思考以下问题:
+        思考:为什么请求8080没有跨域拦截  3000有跨域拦截?
+      -->
+    <button id="btn">点击发送请求</button>
+    <script>
+        btn.onclick = function () {
+            let p = axios({
+                url: '/b',
+            })
+            console.log(p);
+            p.then(res=>{
+                
+            })
+        }
+
+        /**
+         * options 
+         *   url    
+         *   method
+         *   data
+         * 
+         */
+        function axios(options) {
+            let baseUrl = 'http://localhost:8080'
+            let {
+                url = '/',
+                    method = 'GET',
+                    data = {
+                        a: 123,
+                        b: 123
+                    }
+            } = options;
+            method = method.toLocaleUpperCase();
+            let query = '?'
+            for (let k in data) {
+                query = query + k + '=' + data[k] + '&';
+            }
+            query = query.slice(0, query.length - 1);
+            url = baseUrl + url;
+
+            return new Promise((resolve, reject) => {
+                let xhr = new XMLHttpRequest();
+                if (method === 'GET') {
+                    url = url + query;
+                    console.log('11111', url);
+
+                    xhr.open(method, url, true);
+                    xhr.send();
+                } else {
+                    query = query.slice(1);
+                    xhr.open(method, url, true);
+                    xhr.send(query);
+                }
+                // readyState 为 2  3  4 触发 onreadystatechange 事件
+                // 4 客户收到响应
+                xhr.onreadystatechange = (res) => {
+                    console.log('----------------------------');
+                    console.log(res);
+                    if (res.status === 200 && res.readyState === 4) {
+                        // 1:[[Promisestate]] 由 pending 变为 resolve
+                        // 2:[[Promiseresult]] 由 undefined 变为 res赋值
+                        resolve(res)
+                        return
+                    }
+                }
+            })
+        }
+
+        // promise 有三属性, [[prototy]] 为原型
+        // [[promisestate]] 表示状态
+        // [[promiseresult]] 表示结果
+        // result 分 存 取, 存三取二
+        // 存: 1:resolve 实参 2 then回调 return  3 async return 
+        // 取: then回调形参 2 await的返回值.
+    </script>
+</body>
+
+</html>

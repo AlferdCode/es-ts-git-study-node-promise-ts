@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="./request.js"></script>
+    <script>
+        getView()
+        async function getDate() {
+            // 1:return 
+            // 2 await 
+            // 3 $ajax()
+            // 执行顺序是什么？
+
+            //  return 返回的是 $ajax()的返回值promise实例
+            return await $ajax({
+                url: 'http://localhost:3000',
+            })
+
+            
+            // let ajax = $ajax({
+            //     url: 'http://localhost:3000',
+            // })
+            // let await1 = await ajax;
+            // return await1
+        }
+
+        async function getDateStore() {
+            // 4 return 
+            // 5 await 
+            // 6 getDate() getDate 是async函数，返回值  Promise实例
+
+            // 将getDate返回的promise实例 return出去
+            return await getDate();
+            
+            // let data = getDate()
+            // let await2 = await data;
+            // return await2;
+        }
+
+        async function getView() {
+            //   let data = await getDateStore();
+            // 7 getDateStore();
+            // 8:.then()
+            let p = getDateStore();
+            p.then(a => {
+                console.log(a, '根据data进行业务处理');
+            })
+
+            // 最后一个await 
+            // let data = await p;
+            // console.log(data,'data');
+        }
+
+        // 程序执行的步骤
+        // 7 4 1   同步 return  promise
+        //  2 3 5 8
+
+        // 掌握的******
+        // 异步  同步
+        // 先执行完所有的同步程序
+        // ---> $ajax() return promise 传递 getView 中p
+        // 执行异步程序 ，按照顺序一个一个的await执行
+        //----> $ajax中 resolve(xhr.responseText)实参,最总传递到 then的回参a 或者最后一个 await 的返回值
+
+
+
+        // async 函数 是异步的
+        // await 指令也是异步的
+    </script>
+</body>
+
+</html> 

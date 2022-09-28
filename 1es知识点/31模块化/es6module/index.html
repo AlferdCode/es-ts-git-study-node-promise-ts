@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 如何在 html中导入模块要 
+         type='module' 加载模块
+    -->
+    <!-- <script type="module">
+        // 导入模块
+        // 变量 moduleA 赋值 a.js 导出内容
+        import moduleA from './a.js';
+        console.log(moduleA);
+    </script> -->
+
+    <!-- <script type="module" src="./index.js"></script> -->
+    <script type="module">
+        import("./index.js")  // 导入文件
+    </script>
+</body>
+</html>

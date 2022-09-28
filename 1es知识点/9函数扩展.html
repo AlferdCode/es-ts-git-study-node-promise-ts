@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // wlj 就是rest参数
+        // rest 参数 是一个数组；数组中存放所有的实参
+        // rest 参数与 arguments区别 
+        // rest 参数是真数组；argements 是类数组
+        // 箭头函数中没有arguments 可以使用rest参数
+        function fn(...wlj) {  // rest 参数
+            console.log(wlj);  //数组：[1,2,3,4,5]
+            console.log(arguments); // 类数组
+
+        }
+        fn(1, 2, 3, 4, 5)
+
+
+    </script>
+</body>
+
+</html>

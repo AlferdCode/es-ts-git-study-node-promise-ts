@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // get & set
+        // 弊端：get  set 卸载对象内部的，可拓展性是比较差的
+        // 数据劫持：
+        // 1 对象中 get  set  
+        // 2 Object.defineProperty()
+        // 3 proxy 代理
+        let obj = {
+            name: "xiek",
+            age: 12,
+            get  _name() {
+                console.log('劫持name');
+                return this.name
+            },
+            set  _name(val) {
+                console.log('更改name属性触发')
+                this.name = val
+            },
+            get _age(){
+                return this.age
+            },
+            set _age(val){
+                this.age= val
+            }
+        }
+
+        console.log(obj._name);
+        obj._name = 'liumeng';
+        obj._age = '32'
+    </script>
+</body>
+
+</html>

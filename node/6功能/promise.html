@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let p = new Promise((resolve,reject)=>{
+            setTimeout(()=>{
+                // 给new Promise 的 p. [[ppromiseResult]] 赋值
+                resolve('123') // [[ppromiseResult]] 存值方式一
+                 console.log(p);
+            },5000)
+        })
+        console.log(p);
+
+        let p1 = p.then(res=>{
+            console.log('读p的[[promiseResult]]--------->',res); // 渎[[promiseResult]] 方式一
+            // then 返回的 p1.[[ppromiseResult]] 的赋值
+            return 456    // [[ppromiseResult]] 存值方式 二
+        })
+        console.log(p1,'p1');
+        setTimeout(() => {
+            console.log(p1,'p1');
+        }, 6000);
+
+
+        // async函数 返回值 promise实例对象
+        async function foo(){
+            let val = await p1;
+            console.log('await读取p1.[[promiseResult]]------->',val); // 渎[[promiseResult]] 方式二
+
+
+            // return 作用给async返回的promise.[[PromiseResult]] 赋值
+            return 123  //  // [[ppromiseResult]] 存值方式 三
+        }
+
+        console.log(foo());
+
+      
+    
+    </script>
+</body>
+</html>

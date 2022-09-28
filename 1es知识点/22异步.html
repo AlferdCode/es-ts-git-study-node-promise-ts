@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">  
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 什么样的程序是异步的程序呢？
+        console.log('a');
+        console.log('b');
+        console.log('c');
+        // 模拟场景；假设 console.log(dingxupeng) 程序很慢，阻塞了fujia 打印
+        // 解决阻塞问题：--> 借助异步程序解决问题
+        setTimeout(()=>{
+            console.log('dingxupeng');
+
+            console.log('fujian');
+
+        },2000)
+
+        // 异步程序：
+        // 1:执行慢的代码放在异步程序中。解决如果在同中，改代码【阻塞问题】
+        // 2: 异步程序是什么时候执行结束的。
+        // 3: 执行结束后的运行结果，如何告诉外界
+        
+        // 难点：如何实现异步问题同步化？
+    </script>
+</body>
+</html>
